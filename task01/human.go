@@ -3,7 +3,7 @@ package task01
 import "fmt"
 
 // Структура Human представляет человека
-// с одним публичным и одним приватным полем
+// с одним "публичным" и одним "приватным" полем
 type Human struct {
 	ID   int
 	name string
@@ -17,13 +17,13 @@ func NewHuman(newId int, newName string) *Human {
 	}
 }
 
-// Публичный метод IntroduceYourself для структуры Human,
+// "Публичный" метод IntroduceYourself для структуры Human,
 // отправляющий в консоль представление себя
 func (h *Human) IntroduceYourself() {
-	fmt.Printf("Меня зовут %s, прошу любить и жаловть!", h.giveYourselfName())
+	fmt.Printf("Меня зовут %s, прошу любить и жаловть!", h.GiveYourselfName())
 }
 
-// Приватный метод giveYourselfName для структуры Human, возвращающий имя строкой
-func (h *Human) giveYourselfName() string {
+// "Публичный" метод GiveYourselfName для структуры Human, возвращающий имя строкой
+func (h *Human) GiveYourselfName() string {
 	return h.name
 }

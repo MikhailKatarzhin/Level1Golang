@@ -1,7 +1,7 @@
 package main
 
 import (
-	"github.com/MikhailKatarzhin/Level1Golang/task01"
+	"Level1Golang/task01"
 )
 
 func main() {
@@ -12,14 +12,16 @@ func main() {
 	act.DoWhoop() // Метод DoWhoop из Action
 
 	println()
-	// Используем приватное поле и вызываем метод из встраиваемой структуры Human
-	println(act.name)       // Доступ к приватному полю из встроенного Human
+	// НЕ Используем "приватное" поле и используем "публичное" из встраиваемой структуры Human
+	// println(act.name)       // Невозможность доступа к "приватному" полю из встроенного Human
+
+	// Вызываем метод из встраиваемой структуры Human
 	act.IntroduceYourself() // Метод IntroduceYourself из встроенного Human
 
 	println()
 	// Используем замещённый метод
-	println(act.giveYourselfName())
+	println(act.GiveYourselfName())
 
 	// Используем одноимённый метод встроенной в Action структуры Human
-	println(act.Human.giveYourselfName())
+	println(act.Human.GiveYourselfName())
 }

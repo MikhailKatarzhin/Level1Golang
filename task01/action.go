@@ -26,10 +26,10 @@ func (a *Action) DoWhoop() {
 	fmt.Printf("[Некий %s вскликнул %s!]", a.name, a.Whoop)
 }
 
-// Приватный метод giveYourselfName,
+// GiveYourselfName - метод,
 // замещающий одноимённый метод из встроенной структуры Human,
 // и возвращающий строкой перевёрнутое Human.name
-func (a *Action) giveYourselfName() string {
+func (a *Action) GiveYourselfName() string {
 	return reverse(a.name)
 }
 
