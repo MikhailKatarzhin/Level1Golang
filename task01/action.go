@@ -2,14 +2,14 @@ package task01
 
 import "fmt"
 
-// Структура Action встраивает Human
+// Action Структура встраивает Human
 // и дополняет строкой Всклик
 type Action struct {
 	Human // встраиваем структуру Human в Action
 	Whoop string
 }
 
-// Конструктор для создания экземпляра Action
+// NewAction Конструктор для создания экземпляра Action
 // на основе имени и идентификатора человека, а также всклика действия
 func NewAction(name string, id int, whoop string) *Action {
 	return &Action{
@@ -21,7 +21,7 @@ func NewAction(name string, id int, whoop string) *Action {
 	}
 }
 
-// Метод DoWhoop для структуры Action
+// DoWhoop Метод для структуры Action пишущий в консоль имя и вскрик
 func (a *Action) DoWhoop() {
 	fmt.Printf("[Некий %s вскликнул %s!]", a.name, a.Whoop)
 }

@@ -1,7 +1,7 @@
 package main
 
 import (
-	"Level1Golang/task01"
+	"github.com/MikhailKatarzhin/Level1Golang/task01"
 )
 
 func main() {

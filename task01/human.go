@@ -2,14 +2,14 @@ package task01
 
 import "fmt"
 
-// Структура Human представляет человека
+// Human Структура представляет человека
 // с одним "публичным" и одним "приватным" полем
 type Human struct {
 	ID   int
 	name string
 }
 
-// Конструктор для создания экземпляра Human
+// Human Конструктор для создания экземпляра
 func NewHuman(newId int, newName string) *Human {
 	return &Human{
 		ID:   newId,
@@ -17,13 +17,13 @@ func NewHuman(newId int, newName string) *Human {
 	}
 }
 
-// "Публичный" метод IntroduceYourself для структуры Human,
+// IntroduceYourself "Публичный" метод  для структуры Human,
 // отправляющий в консоль представление себя
 func (h *Human) IntroduceYourself() {
 	fmt.Printf("Меня зовут %s, прошу любить и жаловть!", h.GiveYourselfName())
 }
 
-// "Публичный" метод GiveYourselfName для структуры Human, возвращающий имя строкой
+// GiveYourselfName "Публичный" метод  для структуры Human, возвращающий имя строкой
 func (h *Human) GiveYourselfName() string {
 	return h.name
 }
