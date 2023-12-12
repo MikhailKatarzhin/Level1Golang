@@ -9,7 +9,7 @@ type Human struct {
 	name string
 }
 
-// Human Конструктор для создания экземпляра
+// NewHuman Конструктор для создания экземпляра
 func NewHuman(newId int, newName string) *Human {
 	return &Human{
 		ID:   newId,
