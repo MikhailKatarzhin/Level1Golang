@@ -21,27 +21,18 @@ func main() {
 }
 
 // getTimerChanForNSecond создает канал-таймер на nSeconds секунд
-func getTimerChanForNSecond(nSeconds int) <-chan struct{} {
-	newChan := make(chan struct{})
-
-	go func() {
-		time.Sleep(time.Duration(nSeconds) * time.Second)
-		// fmt.Println("Time's up. Exiting...") // строка не обязательна и даже излишня, но уведомляет об окончании таймера
-		newChan <- struct{}{}
-		close(newChan)
-	}()
-
-	return newChan
+func getTimerChanForNSecond(nSeconds int) *time.Timer {
+	return time.NewTimer(time.Duration(nSeconds) * time.Second)
 }
 
 // writeToChannelDuringTimer пишет данные в канал intChan пока не придёт что-либо из канала-таймера timerChan
-func writeToChannelDuringTimer(timerChan <-chan struct{}) <-chan int {
+func writeToChannelDuringTimer(timer *time.Timer) <-chan int {
 	intChan := make(chan int)
 
 	go func() {
 		for i := 0; ; i++ {
 			select {
-			case <-timerChan:
+			case <-timer.C:
 				close(intChan)
 				return
 			default:
