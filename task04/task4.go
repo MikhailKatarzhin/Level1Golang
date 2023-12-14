@@ -11,8 +11,8 @@ import (
 func main() {
 	const numWorkerReaders = 5
 
-	// Завершение по сигналу Ctrl+C
 	sigChan := make(chan os.Signal)
+	// Завершение программы по сигналу Ctrl+C
 	signal.Notify(sigChan, syscall.SIGTERM)
 
 	startWorkerPull(numWorkerReaders, genIntsToChan(sigChan))
