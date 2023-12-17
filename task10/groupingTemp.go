@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"math"
+	"slices"
 	"sync"
 )
 
@@ -17,16 +18,14 @@ func main() {
 
 	workers := 3
 	wg.Add(workers)
+
 	for i := 0; i < workers; i++ {
 		go processTemperatures(temperatureStream, &wg, &mutex, groupedTemperatures)
 	}
 
 	wg.Wait()
 
-	fmt.Println("Группировка температур:")
-	for group, temps := range groupedTemperatures {
-		fmt.Printf("%d: %v\n", group, temps)
-	}
+	printTemps(groupedTemperatures)
 }
 
 func sendTemperatures(temperatures []float64, out chan float64) {
@@ -46,5 +45,21 @@ func processTemperatures(in chan float64, wg *sync.WaitGroup, m *sync.Mutex, gro
 		}
 		groupedTemperatures[group] = append(groupedTemperatures[group], temp)
 		m.Unlock()
+	}
+}
+
+func printTemps(groupedTemperatures map[int][]float64) {
+	var keys []int
+
+	for k := range groupedTemperatures {
+		keys = append(keys, k)
+	}
+
+	slices.Sort(keys)
+	fmt.Println("Группировка температур:")
+
+	for _, group := range keys {
+		temps := groupedTemperatures[group]
+		fmt.Printf("%d: %v\n", group, temps)
 	}
 }
